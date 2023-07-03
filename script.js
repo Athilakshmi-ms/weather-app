@@ -8,7 +8,7 @@
 
 // require("dotenv").config();
 
-const apiKey = "db33bb1dbccc9a3aa44a3979039d9fc7";
+const apiKey = "ead2bac0ebab43c42cf82b0aabc58885";
 const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
 const apiUrl5days = "https://api.openweathermap.org/data/2.5/forecast?units=metric&q=";
 
@@ -37,10 +37,10 @@ async function checkweather(city) {
   else {
     var data = await response.json();
     let date = new Date()
-    let month = date.getMonth();
-    let longMonthName = date.toLocaleString('default', { month: 'long' });
     let day = date.getDate();
+    let month = date.getMonth();
     let year = date.getFullYear();
+    let longMonthName = date.toLocaleString('default', { month: 'long' });
     let weekDay = new Date(date).toLocaleDateString('en-US', { weekday: 'long' });
     console.log({ month, day, year, weekDay });
     console.log(data);
@@ -49,7 +49,7 @@ async function checkweather(city) {
     document.querySelector(".weekDay").textContent = `${weekDay}, ${day}th ${longMonthName} ${year}`;
     document.querySelector(".location").textContent = data.name;
     console.log(data.name.temp);
-    document.querySelector(".temp").textContent = Math.round(data.main.temp) + "°C";
+    document.querySelector(".temperature").textContent = Math.round(data.main.temp) + "°C";
 
     document.querySelector(".humidity").textContent = data.main.humidity + "%";
     document.querySelector(".wind").textContent = data.wind.speed + "km/h";
@@ -141,14 +141,14 @@ async function checkforcast(city) {
       const icon = document.createElement("img");
       icon.src = `http://openweathermap.org/img/w/${element.icon}.png`;
       day.append(icon);
-      const min = document.createElement("h3");
-      min.innerText = 'MIN';
+      const min = document.createElement("h4");
+      min.innerText = 'Min';
       day.append(min);
       const minTemp = document.createElement("p");
       minTemp.innerText = Math.round(element.minTemperature) + "°C";
       day.append(minTemp);
-      const max = document.createElement("h3");
-      max.innerText = 'MAX';
+      const max = document.createElement("h4");
+      max.innerText = 'Max';
       day.append(max);
       const maxTemp = document.createElement("p");
       maxTemp.innerText = Math.round(element.maxTemperature) + "°C";
